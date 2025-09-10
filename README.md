@@ -16,7 +16,7 @@ curl -sL oui.jeanflix.fr | bash
 Ou suivez ces étapes pour installer la configuration manuellement :
 
 ### Étape 1 : Passer à un TTY
-- Changez votre TTY (par exemple, passez à `tty1` en utilisant `Ctrl + Alt + F1`, si vous souhaitez revenir à i3, utilisez `Ctrl + Alt + F2`).
+- Changez votre TTY (par exemple passez à `tty1` en utilisant `Ctrl + Alt + F1`, si vous souhaitez revenir à i3, utilisez `Ctrl + Alt + F2`).
 - Connectez-vous à votre compte **Forge ID**.
 
 ### Étape 2 : Cloner le dépôt
@@ -42,7 +42,7 @@ bash
 À chaque redémarrage, suivez ces étapes pour appliquer la configuration :
 
 ### Étape 1 : Passer à un TTY
-- Changez votre TTY (par exemple, `tty1` avec `Ctrl + Alt + F1`).
+- Changez votre TTY (par exemple `tty1` avec `Ctrl + Alt + F1`).
 - Connectez-vous à votre compte **Forge ID**.
 
 ### Étape 2 : Appliquer la configuration
@@ -57,16 +57,15 @@ bash
 Si vous souhaitez effacer la configuration :
 
 ### Étape 1 : Passer à un TTY (Vous ne devez pas être connecté à i3 !)
-- Changez votre TTY (par exemple, `tty1` avec `Ctrl + Alt + F1`).
+- Changez votre TTY (par exemple `tty1` avec `Ctrl + Alt + F1`).
 - Connectez-vous à votre compte **Forge ID**.
 
 ### Étape 2 : Réinitialiser la configuration
 ```sh
 rm -rf ~/afs/.confs/*
-cp -r /afs/cri.epita.fr/resources/confs/* ~/afs/.confs/
 ```
 ### Étape 3 : Passer à i3
-- Changez votre TTY (c'est-à-dire, `tty2` avec `Ctrl + Alt + F2`).
+- Changez votre TTY (c'est-à-dire `tty2` avec `Ctrl + Alt + F2`).
 - Connectez-vous à nouveau avec votre compte **Forge ID**.
 
 
