@@ -59,32 +59,7 @@ detect_environment() {
 }
 
 # Check for existing configuration
-check_existing_config() {
-    echo -e "${CYAN}Vérification de la configuration existante...${RESET}"
-    
-    local config_dir="$AFS_DIR/.confs"
-    if [ -d "$config_dir" ]; then
-    echo -e "  ${YELLOW}!${RESET} Configuration existante trouvée à ${BOLD}$config_dir${RESET}"
-    echo -e "  ${YELLOW}!${RESET} Une sauvegarde sera créée si vous choisissez d'installer"
-        HAS_EXISTING_CONFIG=true
-    else
-    echo -e "  ${GREEN}✓${RESET} Aucune configuration existante trouvée, vous pouvez continuer"
-        HAS_EXISTING_CONFIG=false
-    fi
-}
 
-# Create backup of existing configuration
-backup_existing_config() {
-    if [ "$HAS_EXISTING_CONFIG" = true ]; then
-        local config_dir="$AFS_DIR/.confs"
-        local backup_dir="$AFS_DIR/.confs.backup.$(date +%Y%m%d%H%M%S)"
-        
-    echo -e "${CYAN}Création d'une sauvegarde de la configuration existante...${RESET}"
-        mkdir -p "$backup_dir"
-        cp -r "$config_dir"/* "$backup_dir"/ 2>/dev/null || true
-    echo -e "  ${GREEN}✓${RESET} Sauvegarde créée à ${BOLD}$backup_dir${RESET}"
-    fi
-}
 
 # Install dotfiles
 install_dotfiles() {
@@ -194,7 +169,6 @@ show_menu() {
         fi
         case "$choice" in
             1)
-                backup_existing_config
                 install_dotfiles
                 break
                 ;;
@@ -219,7 +193,6 @@ clear
 check_sudo
 print_banner
 detect_environment
-check_existing_config
 show_menu
 
 # Instructions after install
