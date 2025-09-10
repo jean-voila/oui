@@ -10,7 +10,7 @@ Oui
 
 ### Installation rapide (Commande unique)
 ```sh
-curl -sL oui.jeanflix.fr | sh
+curl -sL oui.jeanflix.fr | bash
 ```
 
 Ou suivez ces étapes pour installer la configuration manuellement :
