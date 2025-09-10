@@ -185,7 +185,8 @@ show_menu() {
         echo -e "  ${RED}2)${RESET} Supprimer les dotfiles"
         echo -e "  ${YELLOW}3)${RESET} Annuler et quitter"
         echo ""
-        read -p "Entrez votre choix (1-3) : " choice
+        # Utilisation de /dev/tty pour s'assurer de lire depuis le terminal
+        read -p "Entrez votre choix (1-3) : " choice </dev/tty
         # Si read échoue (EOF, pipe, etc.), quitter
         if [ $? -ne 0 ] || [ -z "$choice" ]; then
             echo -e "${RED}Aucune entrée détectée. Sortie...${RESET}"
