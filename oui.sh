@@ -20,7 +20,7 @@ print_banner() {
     echo -e "╚██████╔╝╚██████╔╝██║"
     echo -e " ╚═════╝  ╚═════╝ ╚═╝"
     echo -e "${RESET}"
-    echo -e "${CYAN}Script d'installation des dotfiles${RESET}"
+    echo -e "${CYAN}Bienvenue sur l'installateur des dotfiles ${BOLD}oui${RESET}${CYAN}, les meilleurs dotfiles de tout le Texas${RESET}"
     echo -e "${MAGENTA}===========================${RESET}"
     echo ""
 }
@@ -179,30 +179,38 @@ remove_dotfiles() {
 
 # Main menu
 show_menu() {
-    echo -e "${CYAN}Que souhaitez-vous faire ?${RESET}"
-    echo -e "  ${GREEN}1)${RESET} Installer les dotfiles"
-    echo -e "  ${RED}2)${RESET} Supprimer les dotfiles"
-    echo -e "  ${YELLOW}3)${RESET} Annuler et quitter"
-    echo ""
-    read -p "Entrez votre choix (1-3) : " choice
-    
-    case "$choice" in
-        1)
-            backup_existing_config
-            install_dotfiles
-            ;;
-        2)
-            remove_dotfiles
-            ;;
-        3)
-            echo -e "${YELLOW}Sortie sans modification.${RESET}"
-            exit 0
-            ;;
-        *)
-            echo -e "${RED}Option invalide. Veuillez entrer 1, 2 ou 3.${RESET}"
-            show_menu
-            ;;
-    esac
+    while true; do
+        echo -e "${CYAN}Que souhaitez-vous faire ?${RESET}"
+        echo -e "  ${GREEN}1)${RESET} Installer les dotfiles"
+        echo -e "  ${RED}2)${RESET} Supprimer les dotfiles"
+        echo -e "  ${YELLOW}3)${RESET} Annuler et quitter"
+        echo ""
+        read -p "Entrez votre choix (1-3) : " choice
+        # Si read échoue (EOF, pipe, etc.), quitter
+        if [ $? -ne 0 ] || [ -z "$choice" ]; then
+            echo -e "${RED}Aucune entrée détectée. Sortie...${RESET}"
+            exit 1
+        fi
+        case "$choice" in
+            1)
+                backup_existing_config
+                install_dotfiles
+                break
+                ;;
+            2)
+                remove_dotfiles
+                break
+                ;;
+            3)
+                echo -e "${YELLOW}Sortie sans modification.${RESET}"
+                exit 0
+                ;;
+            *)
+                echo -e "${RED}Option invalide. Veuillez entrer 1, 2 ou 3.${RESET}"
+                # La boucle recommence
+                ;;
+        esac
+    done
 }
 
 # Main execution
